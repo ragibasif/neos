@@ -13,54 +13,91 @@ NEOS="(${MAGENTA}neos${RESET})"
 ERROR="${NEOS} [${RED}ERROR${RESET}]"
 SUCCESS="${NEOS} [${GREEN}SUCCESS${RESET}]"
 WARNING="${NEOS} [${YELLOW}WARNING${RESET}]"
-INFO="${NEOS} [${BLUE}INFO${RESET}]"
+HELP="${NEOS} [${BLUE}HELP${RESET}]"
 QUESTION="${NEOS} [${BLUE}QUESTION${RESET}]"
 
 clear
 
-# echo -e "${ERROR} Example error message."
-# echo -e "${SUCCESS} Example success message."
-# echo -e "${WARNING} Example warning message."
-# echo -e "${INFO} Example general informational message."
+# print to stderr
+help() {
+    >&2 echo -e "${HELP} Create a new project: $0 <PROJECT_NAME>"
+    return 0
+}
 
+project_name=$1
+project_directory="./${project_name}"
+template_directory=./templates
 
-# Check if Git is installed
-if ! command -v git &> /dev/null; then
-    echo -e "${ERROR} Git is not installed or not in PATH." >&2
+# check if project_name is 0 (not passed)
+if [ -z "$project_name" ]; then
+    help
     exit 1
+elif ! [ -d "$template_directory" ]; then
+    >&2 echo -e "${ERROR} Unable to find template directory: $template_directory"
+    exit 2
+elif [ -d "$pdir" ]; then
+    >&2 echo -e "${ERROR} Project directory already exists: $project_directory"
+    exit 3
 fi
 
-# Ask user if they want to use a local template
+current_directory="$PWD"
+cd $template_directory
+echo -e "${NEOS} Please select a template"
+select t in *; do
+    template="$t"
+    break
+done
+
+cd $current_directory
+cp -R ${template_directory}/$template $project_directory
+cd $project_directory
+for t in *; do
+    new=$(sed "s,DEFAULT,$project_name,g" <<< "$t")
+    if [ "$t" = "$new" ]; then
+        sed "s,DEFAULT,$project_name,g" < $t > temp
+        mv -f temp $t
+    else
+        sed "s,DEFAULT,$project_name,g" < $t > $new
+        if [ -e "$new" ]; then
+            rm -f $t
+        fi
+    fi
+done
+
+# Ask user if they want to create a src directory
 echo -en "${QUESTION} "
 read -p "Do you want to create a src directory for your project? (yes/no) " response
 case "$response" in
  [yY][eE][sS]|[yY])
    # Check if the src directory exists
-   # if [ ! -d ./src]; then
-   #  mkdir ./src
-   # fi
-   echo "if [ ! -d ./src]; then"
-   echo "mkdir ./src"
-   echo "fi"
+   if [ ! -d "$project_name"/src ]; then
+    mkdir src
+   fi
+   mv $project_name.* src
+   echo -e "${SUCCESS} Created src directory."
+   cd ..
    ;;
- *) echo -e "${INFO}Skipping src directory creation..."
+ *) echo -e "${WARNING} Skipping src directory creation..."
    ;;
 esac
 
-
-#  Cloning Repository
-echo -e "${INFO} Cloning Repository ..."
-echo -e "${INFO} git clone https://github.com/ragibasif/neos.git > /dev/null 2>&1"
-# git clone https://github.com/ragibasif/neos.git > /dev/null 2>&1
-
 # Ask user for confirmation
-read -p "Do you want to continue? (yes/no) " response
+echo -en "${QUESTION} "
+read -p "Do you want initialize git for $project_name? (yes/no) " response
 case "$response" in
  [yY][eE][sS]|[yY])
-     echo -e "${INFO} OK"
+    # Check if Git is installed
+    if ! command -v git &> /dev/null; then
+        echo -e "${ERROR} Git is not installed or not in PATH." >&2
+        exit 1
+    fi
+    cd $project_name
+    git init .
+    echo -e "${SUCCESS} Git is initialized for $project_name." >&2
+    cd ..
      ;;
  *)
-     echo -e "${INFO} Exiting..."
+     echo -e "${NEOS} Exiting..."
      exit 1
      ;;
 esac
