@@ -8,7 +8,7 @@ Author: Your Name
 Date: YYYY-MM-DD
 */
 
-#include "PROJECT_NAME.h"
+#include "DEFAULT.h"
 #include <stdio.h>
 
 int main(int argc, char **argv) {
