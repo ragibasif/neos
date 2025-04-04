@@ -7,7 +7,6 @@
 #
 #################################################################################
 
-
 # Makefile rules:
 #     TARGET ... : PREREQUISITE ...
 #     <tab char> RECIPE
@@ -70,34 +69,54 @@
 # -DNDEBUG    : Disable assertions
 # -fno-strict-aliasing : Prevents strict aliasing optimizations
 #
-DEBUG_CFLAGS += -Wall -Wextra -O0 -g -pedantic -DDEBUG -DXDBG_ENABLE
+#
+# ANSI colors for stdout
+GREEN=\033[0;92m
+RED=\033[0;91m
+MAGENTA=\033[0;95m
+RESET=\033[0m
+
+
+# CXX := g++
+# CXXFLAGS := -std=c++17 -Wshadow -Wall -Wextra -pedantic -O2 -Wno-unused-result -g -D_GLIBCXX_DEBUG
+CC := gcc
+DEBUG_CFLAGS += -Wall -Wextra -O0 -g -pedantic -DDEBUG
 # -03 -DNDEBUG for release build
 RELEASE_CFLAGS := -O3 -DNDEBUG
-CFLAGS := -std=c99 $(DEBUG_CFLAGS)
+COMMON_CFLAGS := -std=c99
+CFLAGS := $(DEBUG_CFLAGS)
 # CFLAGS := -std=c99 $(RELEASE_CFLAGS)
+#
+# Determine build type
+ifeq ($(RELEASE),1)
+	CFLAGS := $(COMMON_CFLAGS) $(RELEASE_CFLAGS)
+else
+	CFLAGS := $(COMMON_CFLAGS) $(DEBUG_CFLAGS)
+endif
 
-#linker flags: -lm, -lefence
+#linker flags: -v, -lm, -lefence
 LDFLAGS :=
 LIBS =
 INSTALLDIR := ./bin
-CC := gcc
 # Wildcards and pattern substitution
 SRCS := $(wildcard *.c )
 HDRS := $(wildcard *.h )
 # need to use pattern substitution because objects files may not always exist
 OBJS := $(patsubst %.c, %.o, $(SRCS))
+
 # executable name, name of the final program
 EXEC := DEFAULT
 
-default : all
+default: all
+
 
 
 # This line uses the special target ".PHONY". It says that the word "clean", "all", etc.,
 # are all phony targets. So even if there is a file named "clean" in the directory,
 # make will ignore it and run the rule for the phony target "clean".
-.PHONY: all clean default help
+.PHONY: all clean default help run install
 
-all: clean $(EXEC) $(OBJS)
+all: $(EXEC)
 
 
 # Automatic variables:
@@ -111,42 +130,64 @@ all: clean $(EXEC) $(OBJS)
 
 # name the executable whatever the name of the target is,
 # and to compile using all of the prerequisites then echo the changed prerequisites
-$(EXEC): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
-	@ echo Changed files: $?
+#
+# $(EXEC): $(OBJS)
+# 	@echo "${MAGENTA}make all${RESET} $(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)"
+# 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+# 	@ echo Changed files: $?
 
-$(OBJS): $(SRCS) $(HDRS)
-	cc $(CFLAGS) -c $<
+# Build executable with colored success/failure
+$(EXEC): $(OBJS)
+	@echo "🔧 Linking ${MAGENTA}$@${RESET} ..."
+	@$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS) && \
+		echo "$(GREEN)✅ Build successful: $@$(RESET)" || \
+		(echo "$(RED)❌ Linking failed: $@$(RESET)" && exit 1)
+
+# This tells Make how to build any .o file from its corresponding .c file.
+%.o: %.c
+	@echo "🔧 Compiling ${MAGENTA}$<${RESET} ..."
+	@$(CC) $(CFLAGS) -c $< -o $@ && \
+		echo "$(GREEN)✅ Compiled: $<$(RESET)" || \
+		(echo "$(RED)❌ Compile failed: $<$(RESET)" && exit 1)
+
 
 # RM - is 'rm -f' by default
 # The "*.o" is expanded by the shell to include all .o files in the current directory.
-clean:
-	$(RM) $(OBJS) $(EXEC) *~ *.bak $(INSTALLDIR)/$(EXEC)
 
+clean:
+	@echo "${MAGENTA}make clean${RESET} $(RM) -r $(EXEC) $(OBJS) $(INSTALLDIR) *~ *.bak *.dSYM *.out .install"
+	@$(RM) -r $(EXEC) $(OBJS) $(INSTALLDIR) *~ *.bak *.dSYM *.out .install
 
 run:
-	./run.sh
+	@echo "${MAGENTA}make run${RESET} ./run.sh"
+	@./run.sh
 
-# Prevents Make from treating them as actual files
-# Phony targets
-.PHONY: all clean default help run
 
 
 # It is common to supply a "make install" command when providing software
 # packages for distribution.
 install: $(EXEC)
-	@ if [ ! -d $(INSTALLDIR) ] ; then mkdir $(INSTALLDIR) ; fi
-	\cp $(EXEC) $(INSTALLDIR)
-	@ touch .install && echo date >> .install
+	@ if [ ! -d $(INSTALLDIR) ] ; then mkdir -p $(INSTALLDIR) ; fi
+	@cp $(EXEC) $(INSTALLDIR)
+	@touch .install && echo $(shell date) >> .install
 
 # Since make is verbose by default, the "@" turns off echoing
 
-help:
-	@echo "Makefile for Building $(EXEC)."
-	@echo "Usage: make [ all | clean | help | run ]"
 
+help:
+	@echo "${MAGENTA}make help${RESET}"
+	@echo "Makefile for Building ${MAGENTA}${EXEC}${RESET}."
+	@echo "Usage:"
+	@echo "  ${MAGENTA}make${RESET}             — debug build"
+	@echo "  ${MAGENTA}make DEBUG=1${RESET}     — force debug build"
+	@echo "  ${MAGENTA}make RELEASE=1${RESET}   — release build"
+	@echo "  ${MAGENTA}make clean${RESET}       — remove built files"
+	@echo "  ${MAGENTA}make run${RESET}         — run program using ./run.sh"
+	@echo "  ${MAGENTA}make install${RESET}     — install binary to $(INSTALLDIR)"
 
 #################################################################################
 # References:
 #
 # 1. [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
+#
+#
