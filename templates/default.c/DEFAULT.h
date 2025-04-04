@@ -2,7 +2,7 @@
 #define __DEFAULT_H__
 
 /*
-Module Name: default.h
+Module Name: DEFAULT.h
 
 Description:
 This is a default C header file. Modify this comment to describe the module's

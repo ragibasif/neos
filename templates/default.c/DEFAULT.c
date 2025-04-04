@@ -1,5 +1,5 @@
 /*
-Module Name: default.c
+Module Name: DEFAULT.c
 
 Description:
 This is a default C file. Modify this comment to describe the module's purpose.

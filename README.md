@@ -9,4 +9,5 @@ Project starter script that lets you choose from different templates.
 
 ## References
 
-1. [Dr. Jonas Birch](https://youtu.be/mRHy0e58S0s?feature=shared)
+1. [Dr. Jonas Birch: bashbs](https://youtu.be/mRHy0e58S0s?feature=shared)
+2. [Stewart Weiss: Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
