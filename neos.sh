@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define colors
-
+#
 RED='\033[0;91m'
 GREEN='\033[0;92m'
 YELLOW='\033[0;93m'
@@ -65,22 +65,15 @@ for t in *; do
     fi
 done
 
-# Ask user if they want to create a src directory
-echo -en "${QUESTION} "
-read -p "Do you want to create a src directory for your project? (yes/no) " response
-case "$response" in
- [yY][eE][sS]|[yY])
-   # Check if the src directory exists
-   if [ ! -d "$project_name"/src ]; then
+# for the default c projects, build a src and include directory
+if [ "$template" = "default.c" ]; then
     mkdir src
-   fi
-   mv $project_name.* src
-   echo -e "${SUCCESS} Created src directory."
-   cd ..
-   ;;
- *) echo -e "${WARNING} Skipping src directory creation..."
-   ;;
-esac
+    mkdir include
+    mv $project_name.c src
+    mv $project_name.h include
+    echo -e "${SUCCESS} Created src and include directory."
+fi
+cd ..
 
 # Ask user for confirmation
 echo -en "${QUESTION} "

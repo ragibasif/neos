@@ -83,7 +83,7 @@ CC := gcc
 DEBUG_CFLAGS += -Wall -Wextra -O0 -g -pedantic -DDEBUG
 # -03 -DNDEBUG for release build
 RELEASE_CFLAGS := -O3 -DNDEBUG
-COMMON_CFLAGS := -std=c99
+COMMON_CFLAGS := -std=c99 -Iinclude
 CFLAGS := $(DEBUG_CFLAGS)
 # CFLAGS := -std=c99 $(RELEASE_CFLAGS)
 #
@@ -97,18 +97,28 @@ endif
 #linker flags: -v, -lm, -lefence
 LDFLAGS :=
 LIBS =
-INSTALLDIR := ./bin
-# Wildcards and pattern substitution
-SRCS := $(wildcard *.c )
-HDRS := $(wildcard *.h )
-# need to use pattern substitution because objects files may not always exist
-OBJS := $(patsubst %.c, %.o, $(SRCS))
 
+# Directories
+INSTALL_DIRECTORY := bin
+SOURCE_DIRECTORY := src
+INCLUDE_DIRECTORY := include
+BUILD_DIRECTORY := build
+
+# Executable name
 # executable name, name of the final program
-EXEC := DEFAULT
+EXECUTABLE := $(BUILD_DIRECTORY)/DEFAULT
 
+# Wildcards and pattern substitution
+# Source and object files
+SRCS := $(wildcard $(SOURCE_DIRECTORY)/*.c)
+HDRS := $(wildcard $(INCLUDE_DIRECTORY)/*.c)
+# need to use pattern substitution because objects files may not always exist
+OBJS := $(patsubst $(SOURCE_DIRECTORY)/%.c, $(BUILD_DIRECTORY)/%.o, $(SRCS))
+
+
+
+# Default rule
 default: all
-
 
 
 # This line uses the special target ".PHONY". It says that the word "clean", "all", etc.,
@@ -116,7 +126,7 @@ default: all
 # make will ignore it and run the rule for the phony target "clean".
 .PHONY: all clean default help run install
 
-all: $(EXEC)
+all: $(EXECUTABLE)
 
 
 # Automatic variables:
@@ -131,44 +141,55 @@ all: $(EXEC)
 # name the executable whatever the name of the target is,
 # and to compile using all of the prerequisites then echo the changed prerequisites
 #
-# $(EXEC): $(OBJS)
+# $(EXECUTABLE): $(OBJS)
 # 	@echo "${MAGENTA}make all${RESET} $(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)"
 # 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 # 	@ echo Changed files: $?
 
 # Build executable with colored success/failure
-$(EXEC): $(OBJS)
+# Link objects into the final executable
+$(EXECUTABLE): $(OBJS)
 	@echo "🔧 Linking ${MAGENTA}$@${RESET} ..."
+	@mkdir -p $(BUILD_DIRECTORY)
 	@$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS) && \
 		echo "$(GREEN)✅ Build successful: $@$(RESET)" || \
 		(echo "$(RED)❌ Linking failed: $@$(RESET)" && exit 1)
 
 # This tells Make how to build any .o file from its corresponding .c file.
-%.o: %.c
+# Compile .c files to .o files
+$(BUILD_DIRECTORY)/%.o: $(SOURCE_DIRECTORY)/%.c
 	@echo "🔧 Compiling ${MAGENTA}$<${RESET} ..."
+	@mkdir -p $(BUILD_DIRECTORY)
 	@$(CC) $(CFLAGS) -c $< -o $@ && \
 		echo "$(GREEN)✅ Compiled: $<$(RESET)" || \
 		(echo "$(RED)❌ Compile failed: $<$(RESET)" && exit 1)
 
 
+
 # RM - is 'rm -f' by default
 # The "*.o" is expanded by the shell to include all .o files in the current directory.
+# Clean build files
 
 clean:
-	@echo "${MAGENTA}make clean${RESET} $(RM) -r $(EXEC) $(OBJS) $(INSTALLDIR) *~ *.bak *.dSYM *.out .install"
-	@$(RM) -r $(EXEC) $(OBJS) $(INSTALLDIR) *~ *.bak *.dSYM *.out .install
+	@echo "${MAGENTA}make clean${RESET} $(RM) -r $(EXECUTABLE) $(OBJS) $(INSTALL_DIRECTORY) $(BUILD_DIRECTORY) *~ *.bak *.dSYM *.out .install"
+	@$(RM) -r $(EXECUTABLE) $(OBJS) $(INSTALL_DIRECTORY) $(BUILD_DIRECTORY) *~ *.bak *.dSYM *.out .install
 
-run:
-	@echo "${MAGENTA}make run${RESET} ./run.sh"
-	@./run.sh
 
+# Optional: run the program
+run: $(EXECUTABLE)
+	@echo "${MAGENTA}make run${RESET}"
+	@$(EXECUTABLE)
+
+# run:
+# 	@echo "${MAGENTA}make run${RESET} ./run.sh"
+# 	@./run.sh
 
 
 # It is common to supply a "make install" command when providing software
 # packages for distribution.
-install: $(EXEC)
-	@ if [ ! -d $(INSTALLDIR) ] ; then mkdir -p $(INSTALLDIR) ; fi
-	@cp $(EXEC) $(INSTALLDIR)
+install: $(EXECUTABLE)
+	@ if [ ! -d $(INSTALL_DIRECTORY) ] ; then mkdir -p $(INSTALL_DIRECTORY) ; fi
+	@cp $(EXECUTABLE) $(INSTALL_DIRECTORY)
 	@touch .install && echo $(shell date) >> .install
 
 # Since make is verbose by default, the "@" turns off echoing
@@ -176,18 +197,17 @@ install: $(EXEC)
 
 help:
 	@echo "${MAGENTA}make help${RESET}"
-	@echo "Makefile for Building ${MAGENTA}${EXEC}${RESET}."
+	@echo "Makefile for Building ${MAGENTA}${EXECUTABLE}${RESET}."
 	@echo "Usage:"
 	@echo "  ${MAGENTA}make${RESET}             — debug build"
 	@echo "  ${MAGENTA}make DEBUG=1${RESET}     — force debug build"
 	@echo "  ${MAGENTA}make RELEASE=1${RESET}   — release build"
 	@echo "  ${MAGENTA}make clean${RESET}       — remove built files"
 	@echo "  ${MAGENTA}make run${RESET}         — run program using ./run.sh"
-	@echo "  ${MAGENTA}make install${RESET}     — install binary to $(INSTALLDIR)"
+	@echo "  ${MAGENTA}make install${RESET}     — install binary to $(INSTALL_DIRECTORY)"
 
 #################################################################################
 # References:
 #
 # 1. [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
-#
 #
