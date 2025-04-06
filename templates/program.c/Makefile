@@ -178,6 +178,7 @@ clean:
 # Optional: run the program
 run: $(EXECUTABLE)
 	@echo "${MAGENTA}make run${RESET}"
+	@make clean
 	@$(EXECUTABLE)
 
 # run:

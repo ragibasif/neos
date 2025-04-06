@@ -65,8 +65,9 @@ for t in *; do
     fi
 done
 
-# for the default c projects, build a src and include directory
-if [ "$template" = "default.c" ]; then
+# for the large c projects, build a src and include directory
+# TODO: Add test directory
+if [ "$template" = "program.c" ]; then
     mkdir src
     mkdir include
     mv $project_name.c src
@@ -74,6 +75,7 @@ if [ "$template" = "default.c" ]; then
     echo -e "${SUCCESS} Created src and include directory."
 fi
 cd ..
+
 
 # Ask user for confirmation
 echo -en "${QUESTION} "
@@ -95,3 +97,9 @@ case "$response" in
      exit 1
      ;;
 esac
+
+
+
+###################################################
+# References
+# [Dr. Jonas Birch: bashbs](https://youtu.be/mRHy0e58S0s?feature=shared)
