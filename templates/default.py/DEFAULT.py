@@ -1,5 +1,5 @@
 """
-Module Name: default.py
+Module Name: DEFAULT.py
 
 Description:
 This is a default Python file. Modify this docstring to describe the module's purpose.

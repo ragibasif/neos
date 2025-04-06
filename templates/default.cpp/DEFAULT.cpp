@@ -1,5 +1,5 @@
 /*
-Module Name: default.cpp
+Module Name: DEFAULT.cpp
 
 Description:
 This is a default C++ file. Modify this comment to describe the module's
