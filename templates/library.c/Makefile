@@ -154,15 +154,16 @@ $(EXECUTABLE): $(OBJS)
 # Clean build files
 
 clean:
-	@echo "${MAGENTA}make clean${RESET} $(RM) -r $(EXECUTABLE) $(OBJS) $(INSTALL_DIRECTORY) $(BUILD_DIRECTORY) *~ *.bak *.dSYM *.out .install"
-	@$(RM) -r $(EXECUTABLE) $(OBJS) $(INSTALL_DIRECTORY) $(BUILD_DIRECTORY) *~ *.bak *.dSYM *.out .install
+	@echo "${MAGENTA}make clean${RESET} $(RM) -r $(EXECUTABLE) $(OBJS) *~ *.bak *.dSYM *.out"
+	@$(RM) -r $(EXECUTABLE) $(OBJS) *~ *.bak *.dSYM *.out
 
 
 # Optional: run the program
 run: $(EXECUTABLE)
 	@echo "${MAGENTA}make run${RESET}"
 	@make clean
-	@$(EXECUTABLE)
+	@make all
+	@./$(EXECUTABLE)
 
 
 # Since make is verbose by default, the "@" turns off echoing

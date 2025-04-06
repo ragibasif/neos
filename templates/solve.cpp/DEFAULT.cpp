@@ -21,14 +21,6 @@
 
 using namespace std; // removes the need to use std::
 
-/*Fast Input/Output*/
-#define FASTIO                                                                 \
-  do {                                                                         \
-    ios_base::sync_with_stdio(false);                                          \
-    cin.tie(nullptr);                                                          \
-    cout.tie(nullptr);                                                         \
-  } while (0)
-
 void solve(void) {
   int n;
   cin >> n;
@@ -38,7 +30,11 @@ void solve(void) {
 int main(int argc, char **argv) {
   (void)argc;
   (void)argv;
-  FASTIO;
+
+  // Fast Input/Output
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+  cout.tie(nullptr);
 
   int t;
   t = 1;
@@ -47,7 +43,6 @@ int main(int argc, char **argv) {
     solve();
     cout << "\n";
   }
-  cout << endl;
 
   return 0;
 }
