@@ -20,7 +20,7 @@ project-generator/
 ├── templates/
 │   ├── program.c/     # Example C program template directory
 │   ├── my_template/   # Your custom templates go here
-├── neos.sh        # The project generation script
+├── neos.sh            # The project generation script
 ```
 
 ---
