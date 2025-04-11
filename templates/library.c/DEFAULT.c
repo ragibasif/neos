@@ -1,12 +1,7 @@
 /*
-Module Name: DEFAULT.c
-
-Description:
-This is a default C file. Modify this comment to describe the module's purpose.
-
-Author: Your Name
-Date: YYYY-MM-DD
-*/
+ * File:                DEFAULT.c
+ * Original Author:     Ragib Asif <ragib.asif30@myhunter.cuny.edu>
+ */
 
 #include "DEFAULT.h"
 #include <stdio.h>
