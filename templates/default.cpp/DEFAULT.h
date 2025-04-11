@@ -2,7 +2,7 @@
  * File:                DEFAULT.h
  * Original Author:     Ragib Asif <ragib.asif30@myhunter.cuny.edu>
  * Created:             <Created date goes here.>
- * Description:         <This is a default C header file.>
+ * Description:         <This is a default header file.>
  *
  * Usage:               <Briefly describe the usage.>
  *
@@ -21,9 +21,6 @@
 #ifndef __DEFAULT_H__
 #define __DEFAULT_H__
 
-#include <stdio.h>
-
-int main(int argc, char **argv);
 
 #endif // __DEFAULT_H__
 
@@ -48,15 +45,3 @@ int main(int argc, char **argv);
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
-/*
- * References
- *  - <Any references go here.>
- */
-
-/*
- * Modification History
- *  - <All modification dates go here>
- */

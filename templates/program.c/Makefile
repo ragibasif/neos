@@ -80,7 +80,7 @@ RESET=\033[0m
 # CXX := g++
 # CXXFLAGS := -std=c++17 -Wshadow -Wall -Wextra -pedantic -O2 -Wno-unused-result -g -D_GLIBCXX_DEBUG
 CC := gcc
-DEBUG_CFLAGS += -Wall -Wextra -O0 -g -pedantic -DDEBUG
+DEBUG_CFLAGS := -Wall -Wextra -O0 -g -pedantic -DDEBUG
 # -03 -DNDEBUG for release build
 RELEASE_CFLAGS := -O3 -DNDEBUG
 COMMON_CFLAGS := -std=c99 -Iinclude
@@ -178,8 +178,7 @@ clean:
 # Optional: run the program
 run: $(EXECUTABLE)
 	@echo "${MAGENTA}make run${RESET}"
-	@make clean
-	@$(EXECUTABLE)
+	@./$(EXECUTABLE)
 
 
 

@@ -3,8 +3,6 @@ CXXFLAGS = -std=c++17 -Wshadow -Wall -Wextra -pedantic -O2 -Wno-unused-result -g
 SRC = $(wildcard *.cpp)
 EXECUTABLE = DEFAULT
 
-default: all
-
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(SRCS)
@@ -13,5 +11,8 @@ $(EXECUTABLE): $(SRCS)
 clean:
 	@$(RM) -r $(EXECUTABLE) *~ *.bak *.dSYM *.out *.o
 
-.PHONY: all clean default run
+run:
+	@./$(EXECUTABLE)
+
+.PHONY: all clean run
 

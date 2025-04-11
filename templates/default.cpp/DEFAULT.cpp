@@ -1,18 +1,14 @@
 /*
-Module Name: DEFAULT.cpp
+ * File:                DEFAULT.cpp
+ * Original Author:     Ragib Asif <ragib.asif30@myhunter.cuny.edu>
+ */
 
-Description:
-This is a default C++ file. Modify this comment to describe the module's
-purpose.
 
-Author: Your Name
-Date: YYYY-MM-DD
-*/
-
-#include "DEFAULT.hpp"
+#include "DEFAULT.h"
 #include <iostream>
 
 int main(void) {
   std::cout << "Hello, world!" << std::endl;
   return 0;
 }
+

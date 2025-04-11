@@ -1,13 +1,13 @@
 <div align="center">
 
-# DEFAULT
+# 🦄 DEFAULT
 
 </div>
 
 <details open="open">
 <summary>Table of Contents</summary>
 
-- [DEFAULT](#default)
+- [🦄 DEFAULT](#-DEFAULT)
   - [🧠 About](#-about)
   - [📁 Directory Structure](#-directory-structure)
   - [🛠️ Usage](#️-usage)
@@ -20,8 +20,7 @@
   - [📚 Documentation](#-documentation)
   - [🙌 Contributing](#-contributing)
   - [🪪 License](#-license)
-  - [👤 Author](#-author)
-  - [Acknowledgements](#acknowledgements)
+  - [📋 Acknowledgements](#-acknowledgements)
 
 </details>
 
@@ -116,8 +115,4 @@ This project uses:
 
 This project is licensed under the **MIT license**. See the [LICENSE](LICENSE) file for details.
 
-## 👤 Author
-
-[Ragib Asif](https://github.com/ragibasif)
-
-## Acknowledgements
+## 📑 Acknowledgements
