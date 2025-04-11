@@ -109,11 +109,6 @@ HDRS := $(wildcard *.h)
 OBJS := $(patsubst %.c, %.o, $(SRCS))
 
 
-
-# Default rule
-default: all
-
-
 # This line uses the special target ".PHONY". It says that the word "clean", "all", etc.,
 # are all phony targets. So even if there is a file named "clean" in the directory,
 # make will ignore it and run the rule for the phony target "clean".
@@ -182,5 +177,5 @@ help:
 #################################################################################
 # References:
 #
-# 1. [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
+# - [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
 #

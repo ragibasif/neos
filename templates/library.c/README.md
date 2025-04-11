@@ -1,13 +1,13 @@
 <div align="center">
 
-# DEFAULT
+# 🦄 DEFAULT
 
 </div>
 
 <details open="open">
 <summary>Table of Contents</summary>
 
-- [DEFAULT](#default)
+- [🦄 DEFAULT](#-DEFAULT)
   - [🧠 About](#-about)
   - [📁 Directory Structure](#-directory-structure)
   - [🛠️ Usage](#️-usage)
@@ -20,8 +20,7 @@
   - [📚 Documentation](#-documentation)
   - [🙌 Contributing](#-contributing)
   - [🪪 License](#-license)
-  - [👤 Author](#-author)
-  - [Acknowledgements](#acknowledgements)
+  - [📖 References](#-references)
 
 </details>
 
@@ -35,12 +34,10 @@ It's written in standard C (C99) and uses GNU Make for building. The goal of thi
 
 ```bash
 DEFAULT/
-├── src/            # Source files
-├── include/        # Header files
-├── build/          # Build artifacts (created after make)
+├── DEFAULT.c       # Source file
+├── DEFAULT.h       # Header file
 ├── Makefile        # Build system
-├── README.md       # This file
-└── main.c          # Entry point (if not inside src/)
+└── README.md       # This file
 ```
 
 ## 🛠️ Usage
@@ -70,24 +67,7 @@ make clean
 ### 🏃 Run the executable
 
 ```bash
-./build/DEFAULT
-```
-
-> The executable will be built inside the `build/` directory.
-
-## 🧪 Running Tests
-
-If you have a test suite:
-
-```bash
-make test
-```
-
-Or you can manually compile and run test files like:
-
-```bash
-gcc -Iinclude tests/test_foo.c src/foo.c -o test_foo
-./test_foo
+./DEFAULT
 ```
 
 ## 📄 Dependencies
@@ -96,13 +76,11 @@ This project uses:
 
 - C99 Standard
 - GNU Make
-- (Optional) Any libraries you're using (e.g., `glib`, `SDL2`, etc.)
 
 ## 📚 Documentation
 
-- All headers are documented in the `include/` folder.
-- Inline comments are included in the source files.
-- [Optional] Use `doxygen` if you plan to generate documentation.
+- Header is documented in the header file.
+- Inline comments are included in the source file.
 
 ## 🙌 Contributing
 
@@ -116,8 +94,5 @@ This project uses:
 
 This project is licensed under the **MIT license**. See the [LICENSE](LICENSE) file for details.
 
-## 👤 Author
+## 📖 References
 
-[Ragib Asif](https://github.com/ragibasif)
-
-## Acknowledgements

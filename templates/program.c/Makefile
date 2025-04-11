@@ -181,9 +181,6 @@ run: $(EXECUTABLE)
 	@make clean
 	@$(EXECUTABLE)
 
-# run:
-# 	@echo "${MAGENTA}make run${RESET} ./run.sh"
-# 	@./run.sh
 
 
 # It is common to supply a "make install" command when providing software
@@ -210,5 +207,5 @@ help:
 #################################################################################
 # References:
 #
-# 1. [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
+# - [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
 #
