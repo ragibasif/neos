@@ -200,7 +200,7 @@ help:
 	@echo "  ${MAGENTA}make DEBUG=1${RESET}     — force debug build"
 	@echo "  ${MAGENTA}make RELEASE=1${RESET}   — release build"
 	@echo "  ${MAGENTA}make clean${RESET}       — remove built files"
-	@echo "  ${MAGENTA}make run${RESET}         — run program using ./run.sh"
+	@echo "  ${MAGENTA}make run${RESET}         — run program"
 	@echo "  ${MAGENTA}make install${RESET}     — install binary to $(INSTALL_DIRECTORY)"
 
 #################################################################################
