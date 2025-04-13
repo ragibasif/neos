@@ -37,9 +37,9 @@ DEFAULT/
 ├── src/            # Source files
 ├── include/        # Header files
 ├── build/          # Build artifacts (created after make)
+├── tests/          # Test files
 ├── Makefile        # Build system
-├── README.md       # This file
-└── main.c          # Entry point (if not inside src/)
+└── README.md       # This file
 ```
 
 ## 🛠️ Usage
@@ -76,17 +76,18 @@ make clean
 
 ## 🧪 Running Tests
 
-If you have a test suite:
+To build and run test files:
 
 ```bash
 make test
+./build/test_simple
 ```
 
 Or you can manually compile and run test files like:
 
 ```bash
-gcc -Iinclude tests/test_foo.c src/foo.c -o test_foo
-./test_foo
+gcc -Iinclude tests/simple.c src/DEFAULT.c -o test_simple
+./test_simple
 ```
 
 ## 📄 Dependencies

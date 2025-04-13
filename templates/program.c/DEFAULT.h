@@ -1,33 +1,180 @@
-/*
- * File:                DEFAULT.h
- * Original Author:     Ragib Asif <ragib.asif30@myhunter.cuny.edu>
- * Created:             <Created date goes here.>
- * Description:         <This is a default C header file.>
+/**
+ * @file DEFAULT.h
+ * @brief One-line description of the header's purpose
  *
- * Usage:               <Briefly describe the usage.>
- *
- * License:             MIT
- *
- * Last Modified:
- *  - <Last modified dates go here.>
- *
- * Notes (if applicable):
- *  - <Notes go here.>
- *  - <TODO: Example 'todo'.>
- *  - <FIXME: Example 'fixme'.>
- *
+ * @author Ragib Asif
+ * @date YYYY-MM-DD
+ * @version 1.0.0
+ * @copyright MIT License
  */
 
 #ifndef __DEFAULT_H__
 #define __DEFAULT_H__
 
-#include <stdio.h>
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
 
-int main(int argc, char **argv);
+
+/******************************************************************************/
+/*                                                                    VERSION */
+/******************************************************************************/
+
+/* --- Version Information --- */
+#define DEFAULT_VERSION_MAJOR    1     /**< Major version (API-breaking changes) */
+#define DEFAULT_VERSION_MINOR    0     /**< Minor version (backwards-compatible additions) */
+#define DEFAULT_VERSION_PATCH    0     /**< Patch version (bug fixes) */
+
+/* String representation of version */
+#define DEFAULT_VERSION_STRING  "1.0.0"
+
+/* Version comparison macros (useful for dependency checks) */
+#define DEFAULT_VERSION_CHECK(major, minor, patch) \
+    ((major) < DEFAULT_VERSION_MAJOR || \
+    ((major) == DEFAULT_VERSION_MAJOR && (minor) < DEFAULT_VERSION_MINOR) || \
+    ((major) == DEFAULT_VERSION_MAJOR && (minor) == DEFAULT_VERSION_MINOR && (patch) <= DEFAULT_VERSION_PATCH))
+
+/******************************************************************************/
+/*                                                                   INCLUDES */
+/******************************************************************************/
+
+/******************************************************************************/
+/*                                                                     MACROS */
+/******************************************************************************/
+
+/**
+ * @brief Brief description of the macro's purpose
+ *
+ * Detailed description including any special considerations.
+ *
+ * @param x Description of macro parameter (if applicable)
+ */
+#define MY_MACRO(x) ((x) * 2)
+
+/******************************************************************************/
+/*                                                                   TYPEDEFS */
+/******************************************************************************/
+
+/**
+ * @brief Brief description of the type
+ *
+ * Detailed description of what this type represents and how it should be used.
+ */
+typedef struct {
+    int member1;    /**< Description of member1 */
+    float member2; /**< Description of member2 */
+} my_struct_t;
+
+/******************************************************************************/
+/*                                                                      ENUMS */
+/******************************************************************************/
+
+/**
+ * @brief Brief description of the enum's purpose
+ *
+ * Detailed description of when and how to use these values.
+ */
+typedef enum {
+    VALUE1, /**< Description of VALUE1 */
+    VALUE2, /**< Description of VALUE2 */
+    VALUE3  /**< Description of VALUE3 */
+} my_enum_t;
+
+/******************************************************************************/
+/*                                                                    STRUCTS */
+/******************************************************************************/
+
+/******************************************************************************/
+/*                                                                        API */
+/******************************************************************************/
+
+
+/**
+ * @brief Brief one-line description of the function
+ *
+ * Detailed description of the function's purpose and behavior.
+ *
+ * @param param1 Description of first parameter
+ * @param param2 Description of second parameter
+ * @return Description of return value
+ * @note Any important notes about usage
+ * @warning Any critical warnings about the function
+ * @see Related functions or resources
+ * @example
+ *   // Example usage
+ *   int result = my_function(1, 2);
+ */
+int my_function(int param1, int param2);
+
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif // __DEFAULT_H__
 
-/*
+/******************************************************************************/
+/*                                                                     AUTHOR */
+/******************************************************************************/
+
+/**
+ * Author:              Ragib Asif
+ * Email:               ragib.asif30@myhunter.cuny.edu
+ * GitHub:              https://github.com/ragibasif
+ * LinkedIn:            https://www.linkedin.com/in/ragibasif/
+ */
+
+/******************************************************************************/
+/*                                                                DESCRIPTION */
+/******************************************************************************/
+
+/**
+ * <This is a default C header file.>
+ * Detailed description of the header file contents. This should explain:
+ * - What functionality is declared in this header
+ * - Any important concepts or usage patterns
+ * - Relationships to other headers/files
+ */
+
+/******************************************************************************/
+/*                                                                      USAGE */
+/******************************************************************************/
+
+/**
+ * <Describe how to use this program.>
+ */
+
+/******************************************************************************/
+/*                                                                      NOTES */
+/******************************************************************************/
+
+/**
+ *  - <Notes go here.>
+ *  - <TODO: Example 'todo'.>
+ *  - <FIXME: Example 'fixme'.>
+ */
+
+/******************************************************************************/
+/*                                                       MODIFICATION HISTORY */
+/******************************************************************************/
+
+/**
+ *  - <All modification dates go here>
+ */
+
+/******************************************************************************/
+/*                                                                 REFERENCES */
+/******************************************************************************/
+
+/**
+ *  - <Any references go here.>
+ */
+
+/******************************************************************************/
+/*                                                                    LICENSE */
+/******************************************************************************/
+
+/**
  * The MIT License
  *
  * Copyright (c) 2025 Ragib Asif
@@ -51,12 +198,3 @@ int main(int argc, char **argv);
  * SOFTWARE.
  */
 
-/*
- * References
- *  - <Any references go here.>
- */
-
-/*
- * Modification History
- *  - <All modification dates go here>
- */

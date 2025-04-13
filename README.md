@@ -18,7 +18,8 @@ A simple, interactive Bash script to **generate a new project** from a template.
 ```
 project-generator/
 ├── templates/
-│   ├── program.c/     # Example C program template directory
+│   ├── program.c/     # C standalone program template directory
+│   ├── library.c/     # C library template directory
 │   ├── my_template/   # Your custom templates go here
 ├── neos.sh            # The project generation script
 ```

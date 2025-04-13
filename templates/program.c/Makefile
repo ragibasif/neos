@@ -4,6 +4,7 @@
 # `make`
 # `make all`
 # `make clean`
+# `make test`
 #
 #################################################################################
 
@@ -103,6 +104,7 @@ INSTALL_DIRECTORY := bin
 SOURCE_DIRECTORY := src
 INCLUDE_DIRECTORY := include
 BUILD_DIRECTORY := build
+TEST_DIRECTORY := tests
 
 # Executable name
 # executable name, name of the final program
@@ -111,20 +113,19 @@ EXECUTABLE := $(BUILD_DIRECTORY)/DEFAULT
 # Wildcards and pattern substitution
 # Source and object files
 SRCS := $(wildcard $(SOURCE_DIRECTORY)/*.c)
-HDRS := $(wildcard $(INCLUDE_DIRECTORY)/*.c)
+HDRS := $(wildcard $(INCLUDE_DIRECTORY)/*.h)
 # need to use pattern substitution because objects files may not always exist
 OBJS := $(patsubst $(SOURCE_DIRECTORY)/%.c, $(BUILD_DIRECTORY)/%.o, $(SRCS))
 
+TEST_SRCS := $(wildcard $(TEST_DIRECTORY)/*.c)
+TEST_BINS := $(patsubst $(TEST_DIRECTORY)/%.c, $(BUILD_DIRECTORY)/test_%, $(TEST_SRCS))
 
-
-# Default rule
-default: all
 
 
 # This line uses the special target ".PHONY". It says that the word "clean", "all", etc.,
 # are all phony targets. So even if there is a file named "clean" in the directory,
 # make will ignore it and run the rule for the phony target "clean".
-.PHONY: all clean default help run install
+.PHONY: all clean help run install test
 
 all: $(EXECUTABLE)
 
@@ -164,6 +165,17 @@ $(BUILD_DIRECTORY)/%.o: $(SOURCE_DIRECTORY)/%.c
 		echo "$(GREEN)✅ Compiled: $<$(RESET)" || \
 		(echo "$(RED)❌ Compile failed: $<$(RESET)" && exit 1)
 
+
+
+test: $(TEST_BINS)
+
+# Build test executables
+$(BUILD_DIRECTORY)/test_%: $(TEST_DIRECTORY)/%.c $(wildcard $(INCLUDE_DIRECTORY)/*.h)
+	@echo "🧪 Compiling test ${MAGENTA}$<${RESET} ..."
+	@mkdir -p $(BUILD_DIRECTORY)
+	@$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS) && \
+		echo "$(GREEN)✅ Test build successful: $@$(RESET)" || \
+		(echo "$(RED)❌ Test build failed: $<$(RESET)" && exit 1)
 
 
 # RM - is 'rm -f' by default

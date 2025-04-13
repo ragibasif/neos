@@ -66,13 +66,14 @@ for t in *; do
 done
 
 # for the large c projects, build a src and include directory
-# TODO: Add test directory
 if [ "$template" = "program.c" ]; then
     mkdir src
     mkdir include
-    mv $project_name.c src
+    mkdir tests
     mv $project_name.h include
-    echo -e "${SUCCESS} Created src and include directory."
+    cp $project_name.c tests/simple.c
+    mv $project_name.c src
+    echo -e "${SUCCESS} Created src, include, and tests directory."
 fi
 cd ..
 
