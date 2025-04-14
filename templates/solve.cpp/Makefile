@@ -1,5 +1,7 @@
+# @file Makefile
+
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -O0
+CXXFLAGS := -std=c++17 -Wall -Wextra
 SRC := $(wildcard *.cpp)
 EXECUTABLE := solve
 
@@ -14,6 +16,6 @@ clean:
 run:
 	@make clean
 	@make all
-	@./$(EXECUTABLE)
+	@./$(EXECUTABLE) < input.txt
 
 .PHONY: all clean run

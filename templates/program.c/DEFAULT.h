@@ -2,7 +2,7 @@
  * @file DEFAULT.h
  * @brief One-line description of the header's purpose
  *
- * @author Ragib Asif
+ * @author [Ragib Asif](https://github.com/ragibasif)
  * @date YYYY-MM-DD
  * @version 1.0.0
  * @copyright MIT License

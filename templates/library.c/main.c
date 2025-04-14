@@ -1,14 +1,11 @@
 /**
  * @file DEFAULT.c
- * @brief One-line description of the source file's purpose
- *
- * @author Ragib Asif
- * @date YYYY-MM-DD
- * @version 1.0.0
- * @copyright MIT License
+ * @author [Ragib Asif](https://github.com/ragibasif)
  */
 
 #include <stdio.h>
+
+#define DEFAULT_IMPLEMENTATION
 #include "DEFAULT.h"
 
 int main(int argc, char **argv) {

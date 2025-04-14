@@ -1,4 +1,6 @@
-#################################################################################
+################################################################################
+# MAKEFILE                                                                     #
+################################################################################
 #
 # Make commands:
 # `make`
@@ -6,7 +8,7 @@
 # `make clean`
 # `make test`
 #
-#################################################################################
+################################################################################
 
 # Makefile rules:
 #     TARGET ... : PREREQUISITE ...
@@ -70,24 +72,29 @@
 # -DNDEBUG    : Disable assertions
 # -fno-strict-aliasing : Prevents strict aliasing optimizations
 #
+## Automatic variables:
+#   $@  name of target
+#   $^  list of all prerequisites of the target separated by spaces
+#   $?  list of prerequisites for the current target that are newer than
+#       the target separated by  spaces
+#   $<  name of the first prerequisite. If the target got its recipe
+#       from an implicit rule, this is the first prerequisite added by the
+#       implicit rule.
 #
+#
+
 # ANSI colors for stdout
 GREEN=\033[0;92m
 RED=\033[0;91m
 MAGENTA=\033[0;95m
 RESET=\033[0m
 
-
-# CXX := g++
-# CXXFLAGS := -std=c++17 -Wshadow -Wall -Wextra -pedantic -O2 -Wno-unused-result -g -D_GLIBCXX_DEBUG
 CC := gcc
 DEBUG_CFLAGS := -Wall -Wextra -O0 -g -pedantic -DDEBUG
-# -03 -DNDEBUG for release build
 RELEASE_CFLAGS := -O3 -DNDEBUG
 COMMON_CFLAGS := -std=c99 -Iinclude
 CFLAGS := $(DEBUG_CFLAGS)
-# CFLAGS := -std=c99 $(RELEASE_CFLAGS)
-#
+
 # Determine build type
 ifeq ($(RELEASE),1)
 	CFLAGS := $(COMMON_CFLAGS) $(RELEASE_CFLAGS)
@@ -130,22 +137,7 @@ TEST_BINS := $(patsubst $(TEST_DIRECTORY)/%.c, $(BUILD_DIRECTORY)/test_%, $(TEST
 all: $(EXECUTABLE)
 
 
-# Automatic variables:
-#   $@  name of target
-#   $^  list of all prerequisites of the target separated by spaces
-#   $?  list of prerequisites for the current target that are newer than
-#       the target separated by  spaces
-#   $<  name of the first prerequisite. If the target got its recipe
-#       from an implicit rule, this is the first prerequisite added by the
-#       implicit rule.
 
-# name the executable whatever the name of the target is,
-# and to compile using all of the prerequisites then echo the changed prerequisites
-#
-# $(EXECUTABLE): $(OBJS)
-# 	@echo "${MAGENTA}make all${RESET} $(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)"
-# 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
-# 	@ echo Changed files: $?
 
 # Build executable with colored success/failure
 # Link objects into the final executable
@@ -215,8 +207,108 @@ help:
 	@echo "  ${MAGENTA}make run${RESET}         — run program"
 	@echo "  ${MAGENTA}make install${RESET}     — install binary to $(INSTALL_DIRECTORY)"
 
-#################################################################################
-# References:
+################################################################################
+# COMPILATION FLAGS                                                            #
+################################################################################
+#
+#
+#### 🔧 Note on Linker Flags
+#
+# - Most headers do **not** need extra linker flags (they're part of the standard C library).
+# - `math.h` **requires** linking with the **math library**:
+#
+# ```bash
+# gcc my_program.c -o my_program -lm
+# ```
+#
+#
+# ## ⚒️ Compiler Flags (GCC)
+#
+# ### ⚙️ General Compilation
+#
+# - `-c`: Compile source files into object files without linking.
+# - `-o <file>`: Specify the output file name.
+# - `-v`: Enable verbose output, showing the compilation steps.
+# - `-pipe`: Use pipes rather than temporary files during compilation.
+#
+# ### 🧪 Debugging
+#
+# - `-g`: Generate debug information for use with debuggers like `gdb`.
+# - `-ggdb`: Produce debug information specifically tailored for `gdb`.
+# - `-grecord-gcc-switches`: Embed the compiler command-line options into the binary.
+#
+# ### 🚀 Optimization
+#
+# - `-O0`: No optimization (default).
+# - `-O1`, `-O2`, `-O3`: Increasing levels of optimization.
+# - `-Os`: Optimize for size.
+# - `-Ofast`: Enable aggressive, non-standard compliant optimizations.
+# - `-funroll-loops`, `-funroll-all-loops`: Unroll loops to improve performance.
+# - `-ftree-parallelize-loops=N`: Attempt to parallelize loops using N threads.
+#
+# ### ⚠️ Warnings and Errors
+#
+# - `-Wall`: Enable most common warnings.
+# - `-Wextra`: Enable additional warnings.
+# - `-Werror`: Treat all warnings as errors.
+# - `-Wshadow`: Warn when a local variable shadows another.
+# - `-Wundef`: Warn if an undefined macro is used in `#if`.
+# - `-Wstrict-prototypes`: Warn if functions lack argument types.
+# - `-Wconversion`: Warn for implicit conversions.
+# - `-Wfloat-equal`: Warn when comparing floating-point values for equality.
+# - `-Wcast-align`: Warn about misaligned pointer casts.
+# - `-Wwrite-strings`: Make string literals `const` qualified.
+# - `-Wswitch-enum`: Warn when switch does not cover all enum values.
+# - `-Wstrict-overflow=5`: Warn about signed overflow assumptions.
+#
+# ### 🔐 Security and Hardening
+#
+# - `-D_FORTIFY_SOURCE=2`: Enable additional checks for functions like `sprintf`.
+# - `-fstack-protector-strong`: Enable stack protection.
+# - `-fstack-clash-protection`: Protect against stack clash attacks.
+# - `-fcf-protection`, `-mcet`: Enable control-flow protection.
+# - `-fpie`, `-fPIE`: Generate position-independent code (PIE).
+# - `-fpic`, `-fPIC`: Generate position-independent code for shared libraries.
+#
+# ### 🧹 Preprocessor and Macros
+#
+# - `-D<macro>[=<value>]`: Define a macro.
+# - `-U<macro>`: Undefine a macro.
+# - `-I<dir>`: Add directory for header file search.
+# - `-include <file>`: Include a file before compiling each source file.
+#
+# ### 🧪 Sanitizers and Instrumentation
+#
+# - `-fsanitize=address`: Enable AddressSanitizer.
+# - `-fsanitize=undefined`: Enable UndefinedBehaviorSanitizer.
+# - `-fsanitize=thread`: Enable ThreadSanitizer.
+# - `-finstrument-functions`: Instrument function entry and exit.
+#
+#
+# ## 🔗 Linker Flags
+#
+# ### 📦 Linking and Libraries
+#
+# - `-l<library>`: Link with the specified library (e.g., `-lm`).
+# - `-L<dir>`: Add directory to search for libraries.
+# - `-Wl,<option>`: Pass options to the linker.
+# - `-Wl,--gc-sections`: Remove unused sections.
+# - `-Wl,--strip-all`: Strip all symbols from the binary.
+# - `-Wl,-O2`: Optimize the linking process.
+#
+
+################################################################################
+# REFERENCES                                                                   #
+################################################################################
 #
 # - [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
-#
+# - [GCC Manual](https://gcc.gnu.org/onlinedocs/)
+# - [GCC Command Options](https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html)
+# - [GCC Optimization Options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
+# - [GCC Warning Options](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html)
+# - [GCC Debugging Options](https://gcc.gnu.org/onlinedocs/gcc/Debugging-Options.html)
+# - [GCC Preprocessor Options](https://gcc.gnu.org/onlinedocs/cpp/Invocation.html)
+# - [GCC Sanitizers](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html)
+# - [Wikipedia - C standard library](https://en.wikipedia.org/wiki/C_standard_library)
+# - [CPP Reference - C Standard Library headers](https://en.cppreference.com/w/c/header)
+# - [Stack Overflow - What are the useful GCC flags for C?](https://stackoverflow.com/questions/3375697/what-are-the-useful-gcc-flags-for-c)

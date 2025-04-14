@@ -2,7 +2,7 @@
  * @file DEFAULT.c
  * @brief One-line description of the source file's purpose
  *
- * @author Ragib Asif
+ * @author [Ragib Asif](https://github.com/ragibasif)
  * @date YYYY-MM-DD
  * @version 1.0.0
  * @copyright MIT License
@@ -12,8 +12,8 @@
 #include "DEFAULT.h"
 
 int main(int argc, char **argv) {
-  (void)argc;
-  (void)argv;
-  printf("Hello, world!\n");
-  return 0;
+    (void)argc;
+    (void)argv;
+    printf("Hello, world!\n");
+    return 0;
 }
