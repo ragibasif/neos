@@ -73,7 +73,7 @@ MIT License
 
 Pull requests are welcome! Feel free to suggest improvements or open issues.
 
-## References
+## Acknowledgements
 
 - [Dr. Jonas Birch: bashbs](https://youtu.be/mRHy0e58S0s?feature=shared)
 - [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)
