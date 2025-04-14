@@ -16,11 +16,11 @@ A simple, interactive Bash script to **generate a new project** from a template.
 ## 📂 Project Structure
 
 ```
-project-generator/
+neos/
 ├── templates/
 │   ├── program.c/     # C standalone program template directory
 │   ├── library.c/     # C library template directory
-│   ├── my_template/   # Your custom templates go here
+│   ├── solve.cpp/     # C++ dsa problem solving directory
 ├── neos.sh            # The project generation script
 ```
 

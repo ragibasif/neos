@@ -1,6 +1,6 @@
-/*
- * Author:              Ragib Asif
- * File:                DEFAULT.cpp
+/**
+ * @file DEFAULT.cpp
+ * @author Ragib Asif
  */
 
 /******************************************************************************/
@@ -37,9 +37,10 @@
 #define YELLOW "\033[0;93m"
 #define BLUE "\033[0;94m"
 #define MAGENTA "\033[0;95m"
+#define CYAN "\033[0;96m"
 #define RESET "\033[0m"
 
-#define DLOG debugLog(__FILE__,__LINE__,__func__)
+#define DLOG(...) debugLog(BLUE,__FILE__,__LINE__,__func__,__VA_ARGS__)
 
 /******************************************************************************/
 /*                                                                   TYPEDEFS */
@@ -61,7 +62,7 @@ using namespace std;        // removes the need to use std::
 
 void solve(void);
 void fastIO(void);
-string debugLog(const string file, const unsigned int line, const string function);
+void debugLog(const char *color, const char *file, unsigned int line, const char *function, const char *format, ...);
 
 /******************************************************************************/
 /*                                                                      SOLVE */
@@ -70,8 +71,9 @@ string debugLog(const string file, const unsigned int line, const string functio
 void solve(void) {
     int n;
     cin >> n;
-    cout << DLOG << n << endl;
+    DLOG("%d\n",n);
 }
+
 
 /******************************************************************************/
 /*                                                                      MAIN  */
@@ -101,27 +103,26 @@ void fastIO(void) {
     cout.tie(nullptr);
 }
 
-string debugLog(const string file, const unsigned int line, const string function) {
-    string result = "";
-    string prefix = "(" RED "DLOG" RESET ")"; 
-    result += prefix;
-    result += " ["; 
-    result += GREEN + file + RESET; 
-    result += " "; 
-    result += YELLOW;
-    result += to_string(line);
-    result += RESET;
-    result += " ";
-    result += BLUE + function + RESET;
-    result += "] ";
-    return result;
+void debugLog(const char *color, const char *file, unsigned int line, const char *function, const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+    printf("(%s%s%s) ", MAGENTA, "DLOG",
+            RESET);
+    printf("[%s%s %u %s%s] ", CYAN, file, line,
+            function, RESET);
+    printf("%s", color);
+    vprintf(format, args); // Print the actual message
+    printf("%s", RESET);
+    va_end(args);
 }
+
+
 
 /******************************************************************************/
 /*                                                                     AUTHOR */
 /******************************************************************************/
 
-/*
+/**
  * Author:              Ragib Asif
  * Email:               ragib.asif30@myhunter.cuny.edu
  * GitHub:              https://github.com/ragibasif
@@ -129,52 +130,37 @@ string debugLog(const string file, const unsigned int line, const string functio
  */
 
 /******************************************************************************/
-/*                                                                DESCRIPTION */
+/*                                                                    PROBLEM */
 /******************************************************************************/
 
-/*
- * <This is a default C header file.>
- */
-
-/******************************************************************************/
-/*                                                                      USAGE */
-/******************************************************************************/
-
-/*
- * <Describe how to use this program.>
+/**
+ * <Problem link/ description>
  */
 
 /******************************************************************************/
 /*                                                                      NOTES */
 /******************************************************************************/
 
-/*
+/**
  *  - <Notes go here.>
  *  - <TODO: Example 'todo'.>
  *  - <FIXME: Example 'fixme'.>
  */
 
-/******************************************************************************/
-/*                                                       MODIFICATION HISTORY */
-/******************************************************************************/
-
-/*
- *  - <All modification dates go here>
- */
 
 /******************************************************************************/
 /*                                                                 REFERENCES */
 /******************************************************************************/
 
-/*
- *  - https://github.com/TheAlgorithms/C-Plus-Plus
+/**
+ * <References (if applicable)>
  */
 
 /******************************************************************************/
 /*                                                                    LICENSE */
 /******************************************************************************/
 
-/*
+/**
  * The MIT License
  *
  * Copyright (c) 2025 Ragib Asif

@@ -150,7 +150,7 @@ $(EXECUTABLE): $(OBJS)
 
 clean:
 	@echo "${MAGENTA}make clean${RESET} $(RM) -r $(EXECUTABLE) $(OBJS) *~ *.bak *.dSYM *.out"
-	@$(RM) -r $(EXECUTABLE) $(OBJS) *~ *.bak *.dSYM *.out
+	@$(RM) -r $(EXECUTABLE) $(OBJS) *~ *.bak *.dSYM *.out .*.un~
 
 
 # Optional: run the program

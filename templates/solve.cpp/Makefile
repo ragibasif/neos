@@ -9,7 +9,7 @@ $(EXECUTABLE): $(SRCS)
 	@$(CXX) $(CXXFLAGS) -o $(EXECUTABLE) $(SRC)
 
 clean:
-	@$(RM) -r $(EXECUTABLE) *~ *.bak *.dSYM *.out *.o
+	@$(RM) -r $(EXECUTABLE) *~ *.bak *.dSYM *.out *.o .*.un~
 
 run:
 	@make clean

@@ -80,7 +80,7 @@ cd ..
 
 # Ask user for confirmation
 echo -en "${QUESTION} "
-read -p "Do you want initialize git for $project_name? (yes/no) " response
+read -p "Do you want to initialize git for $project_name? (yes/no) " response
 case "$response" in
  [yY][eE][sS]|[yY])
     # Check if Git is installed
