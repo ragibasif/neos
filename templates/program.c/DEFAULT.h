@@ -15,24 +15,25 @@
 extern "C" {
 #endif // __cplusplus
 
-
 /******************************************************************************/
 /*                                                                    VERSION */
 /******************************************************************************/
 
 /* --- Version Information --- */
-#define DEFAULT_VERSION_MAJOR    1     /**< Major version (API-breaking changes) */
-#define DEFAULT_VERSION_MINOR    0     /**< Minor version (backwards-compatible additions) */
-#define DEFAULT_VERSION_PATCH    0     /**< Patch version (bug fixes) */
+#define DEFAULT_VERSION_MAJOR 1 /**< Major version (API-breaking changes) */
+#define DEFAULT_VERSION_MINOR                                                  \
+    0 /**< Minor version (backwards-compatible additions) */
+#define DEFAULT_VERSION_PATCH 0 /**< Patch version (bug fixes) */
 
 /* String representation of version */
-#define DEFAULT_VERSION_STRING  "1.0.0"
+#define DEFAULT_VERSION_STRING "1.0.0"
 
 /* Version comparison macros (useful for dependency checks) */
-#define DEFAULT_VERSION_CHECK(major, minor, patch) \
-    ((major) < DEFAULT_VERSION_MAJOR || \
-    ((major) == DEFAULT_VERSION_MAJOR && (minor) < DEFAULT_VERSION_MINOR) || \
-    ((major) == DEFAULT_VERSION_MAJOR && (minor) == DEFAULT_VERSION_MINOR && (patch) <= DEFAULT_VERSION_PATCH))
+#define DEFAULT_VERSION_CHECK(major, minor, patch)                             \
+    ((major) < DEFAULT_VERSION_MAJOR ||                                        \
+     ((major) == DEFAULT_VERSION_MAJOR && (minor) < DEFAULT_VERSION_MINOR) ||  \
+     ((major) == DEFAULT_VERSION_MAJOR && (minor) == DEFAULT_VERSION_MINOR &&  \
+      (patch) <= DEFAULT_VERSION_PATCH))
 
 /******************************************************************************/
 /*                                                                   INCLUDES */
@@ -61,7 +62,7 @@ extern "C" {
  * Detailed description of what this type represents and how it should be used.
  */
 typedef struct {
-    int member1;    /**< Description of member1 */
+    int member1;   /**< Description of member1 */
     float member2; /**< Description of member2 */
 } my_struct_t;
 
@@ -88,7 +89,6 @@ typedef enum {
 /*                                                                        API */
 /******************************************************************************/
 
-
 /**
  * @brief Brief one-line description of the function
  *
@@ -105,7 +105,6 @@ typedef enum {
  *   int result = my_function(1, 2);
  */
 int my_function(int param1, int param2);
-
 
 #ifdef __cplusplus
 }
@@ -222,26 +221,39 @@ int my_function(int param1, int param2);
 // | Header | Category | Example Functions / Macros | Linker Flag |
 // |--------|----------|-----------------------------|-------------|
 // | `#include <assert.h>` | Diagnostics | `assert()` | *(none)* |
-// | `#include <complex.h>` | Complex Arithmetic | `cabs()`, `cexp()`, `cpow()` | `-lm` |
-// | `#include <ctype.h>` | Character Classification | `isalpha()`, `isdigit()`, `isalnum()`, `isspace()`, `toupper()`, `tolower()` | *(none)* |
-// | `#include <errno.h>` | Error Handling | `errno`, `EDOM`, `ERANGE` | *(none)* |
-// | `#include <fenv.h>` | Floating-Point Environment | `feclearexcept()`, `fetestexcept()` | `-lm` |
-// | `#include <float.h>` | Floating Point Limits | `FLT_MAX`, `DBL_MIN`, `FLT_EPSILON`, `LDBL_MAX` | *(none)* |
-// | `#include <inttypes.h>` | Integer Types and Format | `intmax_t`, `PRId32`, `strtoimax()` | *(none)* |
-// | `#include <iso646.h>` | Alternative Operators | `and`, `or`, `not` | *(none)* |
-// | `#include <limits.h>` | Integer Limits | `INT_MAX`, `INT_MIN`, `CHAR_MAX`, `LONG_MAX`, `SHRT_MIN` | *(none)* |
-// | `#include <locale.h>` | Localization | `setlocale()`, `localeconv()` | *(none)* |
-// | `#include <math.h>` | Mathematics | `pow()`, `sqrt()`, `log()`, `exp()`, `sin()`, `cos()`, `tan()`, `fabs()`, `ceil()`, `floor()` | `-lm` |
-// | `#include <setjmp.h>` | Non-local Jumps | `setjmp()`, `longjmp()` | *(none)* |
-// | `#include <signal.h>` | Signal Handling | `signal()`, `raise()`, `SIGINT`, `SIGTERM` | *(none)* |
-// | `#include <stdarg.h>` | Variadic Functions | `va_start()`, `va_arg()`, `va_end()` | *(none)* |
-// | `#include <stdbool.h>` | Boolean Type *(C99+)* | `bool`, `true`, `false` | *(none)* |
-// | `#include <stddef.h>` | Common Macros & Types | `size_t`, `ptrdiff_t`, `NULL`, `offsetof()` | *(none)* |
-// | `#include <stdint.h>` | Fixed-Width Integers *(C99+)* | `int8_t`, `uint16_t`, `int32_t`, `INT64_MAX`, `UINT8_MAX` | *(none)* |
-// | `#include <stdio.h>` | I/O (Input/Output) | `printf()`, `scanf()`, `fgets()`, `puts()`, `fopen()`, `fclose()`, `fread()`, `fwrite()`, `fprintf()`, `fscanf()`, `getc()`, `putc()` | *(none)* |
-// | `#include <stdlib.h>` | General Utilities | `malloc()`, `calloc()`, `realloc()`, `free()`, `exit()`, `atoi()`, `atof()`, `rand()`, `srand()`, `abs()`, `system()` | *(none)* |
-// | `#include <string.h>` | Strings & Memory | `strlen()`, `strcpy()`, `strncmp()`, `strcat()`, `strchr()`, `strstr()`, `memcpy()`, `memmove()`, `memset()` | *(none)* |
-// | `#include <tgmath.h>` | Type-generic Math (C99) | `tgamma()`, `cabs()` (wraps `<math.h>` / `<complex.h>`) | `-lm` |
-// | `#include <time.h>` | Time/Date | `time()`, `clock()`, `difftime()`, `mktime()`, `localtime()`, `gmtime()`, `strftime()` | *(none)* |
-// | `#include <wchar.h>` | Wide Characters | `wprintf()`, `wcslen()`, `wcscpy()` | *(none)* |
-// | `#include <wctype.h>` | Wide Character Classification | `iswalpha()`, `towlower()` | *(none)* |
+// | `#include <complex.h>` | Complex Arithmetic | `cabs()`, `cexp()`, `cpow()`
+// | `-lm` | | `#include <ctype.h>` | Character Classification | `isalpha()`,
+// `isdigit()`, `isalnum()`, `isspace()`, `toupper()`, `tolower()` | *(none)* |
+// | `#include <errno.h>` | Error Handling | `errno`, `EDOM`, `ERANGE` |
+// *(none)* | | `#include <fenv.h>` | Floating-Point Environment |
+// `feclearexcept()`, `fetestexcept()` | `-lm` | | `#include <float.h>` |
+// Floating Point Limits | `FLT_MAX`, `DBL_MIN`, `FLT_EPSILON`, `LDBL_MAX` |
+// *(none)* | | `#include <inttypes.h>` | Integer Types and Format | `intmax_t`,
+// `PRId32`, `strtoimax()` | *(none)* | | `#include <iso646.h>` | Alternative
+// Operators | `and`, `or`, `not` | *(none)* | | `#include <limits.h>` | Integer
+// Limits | `INT_MAX`, `INT_MIN`, `CHAR_MAX`, `LONG_MAX`, `SHRT_MIN` | *(none)*
+// | | `#include <locale.h>` | Localization | `setlocale()`, `localeconv()` |
+// *(none)* | | `#include <math.h>` | Mathematics | `pow()`, `sqrt()`, `log()`,
+// `exp()`, `sin()`, `cos()`, `tan()`, `fabs()`, `ceil()`, `floor()` | `-lm` |
+// | `#include <setjmp.h>` | Non-local Jumps | `setjmp()`, `longjmp()` |
+// *(none)* | | `#include <signal.h>` | Signal Handling | `signal()`, `raise()`,
+// `SIGINT`, `SIGTERM` | *(none)* | | `#include <stdarg.h>` | Variadic Functions
+// | `va_start()`, `va_arg()`, `va_end()` | *(none)* | | `#include <stdbool.h>`
+// | Boolean Type *(C99+)* | `bool`, `true`, `false` | *(none)* | | `#include
+// <stddef.h>` | Common Macros & Types | `size_t`, `ptrdiff_t`, `NULL`,
+// `offsetof()` | *(none)* | | `#include <stdint.h>` | Fixed-Width Integers
+// *(C99+)* | `int8_t`, `uint16_t`, `int32_t`, `INT64_MAX`, `UINT8_MAX` |
+// *(none)* | | `#include <stdio.h>` | I/O (Input/Output) | `printf()`,
+// `scanf()`, `fgets()`, `puts()`, `fopen()`, `fclose()`, `fread()`, `fwrite()`,
+// `fprintf()`, `fscanf()`, `getc()`, `putc()` | *(none)* | | `#include
+// <stdlib.h>` | General Utilities | `malloc()`, `calloc()`, `realloc()`,
+// `free()`, `exit()`, `atoi()`, `atof()`, `rand()`, `srand()`, `abs()`,
+// `system()` | *(none)* | | `#include <string.h>` | Strings & Memory |
+// `strlen()`, `strcpy()`, `strncmp()`, `strcat()`, `strchr()`, `strstr()`,
+// `memcpy()`, `memmove()`, `memset()` | *(none)* | | `#include <tgmath.h>` |
+// Type-generic Math (C99) | `tgamma()`, `cabs()` (wraps `<math.h>` /
+// `<complex.h>`) | `-lm` | | `#include <time.h>` | Time/Date | `time()`,
+// `clock()`, `difftime()`, `mktime()`, `localtime()`, `gmtime()`, `strftime()`
+// | *(none)* | | `#include <wchar.h>` | Wide Characters | `wprintf()`,
+// `wcslen()`, `wcscpy()` | *(none)* | | `#include <wctype.h>` | Wide Character
+// Classification | `iswalpha()`, `towlower()` | *(none)* |

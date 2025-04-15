@@ -80,14 +80,14 @@ To build and run test files:
 
 ```bash
 make test
-./build/test_simple
+./build/test_example
 ```
 
 Or you can manually compile and run test files like:
 
 ```bash
-gcc -Iinclude tests/simple.c src/DEFAULT.c -o test_simple
-./test_simple
+gcc -Iinclude tests/test_example.c src/DEFAULT.c -o test_example
+./test_example
 ```
 
 ## 📄 Dependencies

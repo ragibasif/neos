@@ -125,7 +125,7 @@ HDRS := $(wildcard $(INCLUDE_DIRECTORY)/*.h)
 OBJS := $(patsubst $(SOURCE_DIRECTORY)/%.c, $(BUILD_DIRECTORY)/%.o, $(SRCS))
 
 TEST_SRCS := $(wildcard $(TEST_DIRECTORY)/*.c)
-TEST_BINS := $(patsubst $(TEST_DIRECTORY)/%.c, $(BUILD_DIRECTORY)/test_%, $(TEST_SRCS))
+TEST_BINS := $(patsubst $(TEST_DIRECTORY)/%.c, $(BUILD_DIRECTORY)/t_%, $(TEST_SRCS))
 
 
 

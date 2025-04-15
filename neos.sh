@@ -71,7 +71,7 @@ if [ "$template" = "program.c" ]; then
     mkdir include
     mkdir tests
     mv $project_name.h include
-    cp $project_name.c tests/simple.c
+    cp $project_name.c tests/test_example.c
     mv $project_name.c src
     echo -e "${SUCCESS} Created src, include, and tests directory."
 fi

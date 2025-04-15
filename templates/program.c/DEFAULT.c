@@ -8,8 +8,8 @@
  * @copyright MIT License
  */
 
-#include <stdio.h>
 #include "DEFAULT.h"
+#include <stdio.h>
 
 int main(int argc, char **argv) {
     (void)argc;
