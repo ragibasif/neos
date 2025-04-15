@@ -1,5 +1,5 @@
 # @file Makefile
- 
+
 # ANSI colors for stdout
 GREEN=\033[0;92m
 RED=\033[0;91m
@@ -11,7 +11,7 @@ DEBUG_CFLAGS += -Wall -Wextra -O0 -g -pedantic -DDEBUG
 RELEASE_CFLAGS := -O3 -DNDEBUG
 COMMON_CFLAGS := -std=c99
 CFLAGS := $(DEBUG_CFLAGS)
- 
+
 # Determine build type
 ifeq ($(RELEASE),1)
 	CFLAGS := $(COMMON_CFLAGS) $(RELEASE_CFLAGS)
@@ -28,7 +28,7 @@ SRCS := $(wildcard *.c)
 HDRS := $(wildcard *.h)
 OBJS := $(patsubst %.c, %.o, $(SRCS))
 
-.PHONY: all clean default help run
+.PHONY: all clean help run
 
 all: $(EXECUTABLE)
 
@@ -62,5 +62,5 @@ help:
 	@echo "  ${MAGENTA}make DEBUG=1${RESET}     — force debug build"
 	@echo "  ${MAGENTA}make RELEASE=1${RESET}   — release build"
 	@echo "  ${MAGENTA}make clean${RESET}       — remove built files"
-	@echo "  ${MAGENTA}make run${RESET}         — run program using ./run.sh"
+	@echo "  ${MAGENTA}make run${RESET}         — run program"
 

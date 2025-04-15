@@ -1,5 +1,5 @@
 /**
- * @file DEFAULT.c
+ * @file main.c
  * @author [Ragib Asif](https://github.com/ragibasif)
  */
 

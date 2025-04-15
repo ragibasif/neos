@@ -17,10 +17,10 @@ A simple, interactive Bash script to **generate a new project** from a template.
 
 ```
 neos/
-├── templates/
-│   ├── program.c/     # C standalone program template directory
-│   ├── library.c/     # C library template directory
-│   ├── solve.cpp/     # C++ dsa problem solving directory
+├── templates/              # Templates go here
+│   ├── program.c/          # C standalone program template directory
+│   ├── library.c/          # C library template directory
+│   ├── solve.cpp/          # C++ dsa problem solving directory
 ├── neos.sh            # The project generation script
 ```
 
@@ -46,34 +46,8 @@ If you don't pass a project name, the script will show a usage help message.
 4. If the template was `program.c`, `src/` and `include/` directories will be created.
 5. You'll be asked if you want to initialize a Git repository.
 
-## 🧠 Notes
+## Notes
 
 - Make sure you have a `templates/` folder in the same directory as the script.
 - Template files should use `DEFAULT` as a placeholder name (in file content and optionally in file names).
 - Git is optional but recommended for version control.
-
-## 🛑 Exit Codes
-
-- `1` - No project name provided
-- `2` - Missing `templates/` directory
-- `3` - Project directory already exists
-- `1` - Git not installed (if selected)
-
-## 📌 TODO
-
-- [ ] Add support for test directories
-- [ ] Improve error handling and input validation
-- [ ] Allow custom template variables beyond `DEFAULT`
-
-## 📄 License
-
-MIT License
-
-## 🤝 Contributing
-
-Pull requests are welcome! Feel free to suggest improvements or open issues.
-
-## Acknowledgements
-
-- [Dr. Jonas Birch: bashbs](https://youtu.be/mRHy0e58S0s?feature=shared)
-- [Stewart Weiss Make-Tutorial](https://gitlab.com/stewartweiss/Make-Tutorial)

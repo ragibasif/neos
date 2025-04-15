@@ -19,3 +19,11 @@ extern "C" {
 #endif // __cplusplus
 
 #endif // __DEFAULT_H__
+
+#ifdef DEFAULT_IMPLEMENTATION
+
+/******************************************************************************/
+/*                                                         API IMPLEMENTATION */
+/******************************************************************************/
+
+#endif // DEFAULT_IMPLEMENTATION

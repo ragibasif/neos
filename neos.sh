@@ -99,8 +99,3 @@ case "$response" in
      ;;
 esac
 
-
-
-###################################################
-# References
-# [Dr. Jonas Birch: bashbs](https://youtu.be/mRHy0e58S0s?feature=shared)
