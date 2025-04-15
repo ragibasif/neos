@@ -1,7 +1,4 @@
-/**
- * @file DEFAULT.cpp
- * @author Ragib Asif
- */
+// DEFAULT.cpp
 
 /******************************************************************************/
 /*                                                                   INCLUDES */
@@ -28,8 +25,6 @@
 #include <utility>          // pair
 #include <vector>           // vector - dynamic array
 
-#define DLOG_IMPLEMENTATION
-#include "dlog.h"          // debug logging function
 
 using namespace std;        // removes the need to use std::
 
@@ -40,7 +35,7 @@ using namespace std;        // removes the need to use std::
 void solve(void) {
     int n;
     cin >> n;
-    DLOG("%d\n",n);
+    printf("%d\n",n);
 }
 
 
