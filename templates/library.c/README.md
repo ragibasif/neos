@@ -1,10 +1,10 @@
-# 🦄 DEFAULT
+# DEFAULT
 
 DEFAULT is a C library that [brief description of what your program does].
 
 It's written in standard C (C99) and uses GNU Make for building. The goal of this project is to [insert goal or motivation, e.g., build a simple CLI tool, implement data structures from scratch, etc.].
 
-## 🛠️ Usage
+## Usage
 
 To use the library in your project, include the header file.
 
@@ -12,7 +12,7 @@ To use the library in your project, include the header file.
 #include "DEFAULT.h"
 ```
 
-### 💻 Installation
+### Installation
 
 Clone the repository.
 
@@ -22,19 +22,19 @@ git clone git@github.com:ragibasif/DEFAULT.git
 
 Make sure you have `gcc` and `make` installed.
 
-### 🔧 Build the project
+### Build the project
 
 ```bash
 make
 ```
 
-### 🧹 Clean build files
+### Clean build files
 
 ```bash
 make clean
 ```
 
-### 🏃 Run the executable
+### Run the executable
 
 ```bash
 ./DEFAULT

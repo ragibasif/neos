@@ -1,7 +1,7 @@
 # @file Makefile
 
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra
+CXXFLAGS := -std=c++17 -Wall -Wextra -g3
 SRC := $(wildcard *.cpp)
 EXECUTABLE := solve
 
