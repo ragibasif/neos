@@ -70,7 +70,7 @@ for t in *; do
 done
 
 cd $PROJECT_DIRECTORY && sed -I '' "s/{{YEAR}}/$YEAR/g" $PROJECT_DIRECTORY/LICENSE
-cd $PROJECT_DIRECTORY && sed -I '' "s/DESCRIPTION/$DESCRIPTION/g" $PROJECT_DIRECTORY/README.md
+cd $PROJECT_DIRECTORY && sed -I '' "s/{{DESCRIPTION}}/$DESCRIPTION/g" $PROJECT_DIRECTORY/README.md
 
 # for the large c projects, build a src and include directory
 if [ "$template" = "program.c" ]; then
