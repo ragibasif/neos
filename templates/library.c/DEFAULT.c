@@ -1,7 +1,4 @@
-/**
- * @file DEFAULT.c
- * @author [Ragib Asif](https://github.com/ragibasif)
- */
+// DEFAULT.h
 
 #include "DEFAULT.h"
 #include <stdio.h>

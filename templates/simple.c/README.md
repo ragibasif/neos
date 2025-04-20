@@ -1,6 +1,6 @@
 # DEFAULT
 
-DEFAULT is a simple C program that [brief description of what your program does].
+{{DESCRIPTION}}
 
 It's written in standard C (C99) and uses GNU Make for building. The goal of this project is to [insert goal or motivation, e.g., build a simple CLI tool, implement data structures from scratch, etc.].
 

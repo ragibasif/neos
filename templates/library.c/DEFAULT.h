@@ -1,7 +1,4 @@
-/**
- * @file DEFAULT.h
- * @author [Ragib Asif](https://github.com/ragibasif)
- */
+// DEFAULT.h
 
 #ifndef __DEFAULT_H__
 #define __DEFAULT_H__

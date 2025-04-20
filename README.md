@@ -9,7 +9,7 @@ A simple, interactive Bash script to **generate a new project** from a template.
 - 🔧 Generates a project from a selected template
 - 🎨 Color-coded messages for readability
 - 📁 Automatically creates `src` and `include` directories for C projects
-- 📝 Replaces placeholder `DEFAULT` in filenames and file contents with your project name
+- 📝 Replaces placeholder `dajfdk` in filenames and file contents with your project name
 - 🧪 Ready for further extension (e.g., add `tests/` directory)
 - 🌱 Optionally initializes a Git repository
 
@@ -42,12 +42,12 @@ If you don't pass a project name, the script will show a usage help message.
 
 1. You'll be prompted to choose a template from the `templates/` folder.
 2. The script will copy the selected template into a new folder named `myapp/`.
-3. All occurrences of `DEFAULT` in filenames and content will be replaced with `myapp`.
+3. All occurrences of `dajfdk` in filenames and content will be replaced with `myapp`.
 4. If the template was `program.c`, `src/` and `include/` directories will be created.
 5. You'll be asked if you want to initialize a Git repository.
 
 ## Notes
 
 - Make sure you have a `templates/` folder in the same directory as the script.
-- Template files should use `DEFAULT` as a placeholder name (in file content and optionally in file names).
+- Template files should use `dajfdk` as a placeholder name (in file content and optionally in file names).
 - Git is optional but recommended for version control.
