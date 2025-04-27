@@ -1,6 +1,4 @@
-# DEFAULT
-
-{{DESCRIPTION}}
+# Solve
 
 Currently using C++17
 

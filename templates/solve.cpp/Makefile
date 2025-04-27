@@ -1,4 +1,4 @@
-# @file Makefile
+# Makefile
 
 CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -g3
